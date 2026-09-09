@@ -234,6 +234,38 @@ display:flex;justify-content:center}
 border-radius:6px;padding:36px 28px 56px;
 font-size:16px;line-height:1.85;box-shadow:0 2px 12px
 rgba(0,0,0,0.08)}
+/* Phone preview mode */
+.preview-scroll.phone-mode{padding:24px 0}
+.preview-scroll.phone-mode #preview{
+max-width:375px;border-radius:32px;padding:24px 20px 48px;
+box-shadow:0 8px 40px rgba(0,0,0,0.15);
+border:8px solid #1a1a1a;min-height:600px}
+.preview-scroll.phone-mode #preview::before{
+content:"";display:block;width:100px;height:24px;
+background:#1a1a1a;border-radius:0 0 14px 14px;
+margin:-32px auto 12px auto;width:120px}
+/* Device toggle */
+.device-toggle{display:flex;gap:2px;
+background:var(--ui-btn-bg);border-radius:6px;padding:2px}
+.device-btn{padding:3px 12px;border:none;border-radius:5px;
+font-size:11px;font-weight:600;cursor:pointer;
+background:none;color:var(--ui-text-dim);transition:all .15s;
+font-family:inherit;display:flex;align-items:center;gap:3px}
+.device-btn.active{background:var(--ui-accent);
+color:#fff}
+.device-btn:hover:not(.active){color:var(--ui-text)}
+/* Template card visual preview */
+.tmpl-card-preview{height:60px;border-radius:6px;
+overflow:hidden;border:1px solid var(--ui-border);
+margin-bottom:8px;position:relative;background:#fff}
+.tmpl-card-preview-bar{height:3px;width:100%}
+.tmpl-card-preview-title{height:8px;width:60%;
+margin:8px 10% 4px;border-radius:2px}
+.tmpl-card-preview-line{height:4px;width:80%;
+margin:3px 10%;border-radius:2px}
+.tmpl-card-preview-line.short{width:50%}
+.tmpl-card-preview-h2bar{position:absolute;left:0;
+top:18px;width:3px;height:10px;border-radius:1px}
 .status-bar{height:24px;display:flex;align-items:center;
 justify-content:space-between;padding:0 14px;
 background:var(--ui-toolbar);font-size:10px;color:var(--ui-status);
@@ -835,9 +867,15 @@ github.com/Alice-P197</a>
 <div class="divider" id="divider"></div>
 <div class="panel" id="previewPanel">
 <div class="panel-header"><span data-i18n="preview">Preview</span>
-<span id="renderTime" data-i18n="ready">Ready</span></div>
+<div style="display:flex;align-items:center;gap:8px">
+<div class="device-toggle">
+<button class="device-btn active" id="btnDevicePhone" title="手机端预览">手机</button>
+<button class="device-btn" id="btnDeviceDesktop" title="电脑端预览">电脑</button>
+</div>
+<span id="renderTime" data-i18n="ready">Ready</span>
+</div></div>
 <div class="preview-wrap" id="previewWrap">
-<div class="preview-scroll"><div id="preview"></div>
+<div class="preview-scroll phone-mode"><div id="preview"></div>
 </div></div>
 </div>
 </div>
@@ -5518,10 +5556,33 @@ function buildTemplateGrid() {
               + tmpl.id + '" title="' + tr("delete_template")
               + '">&times;</button>'
             : '';
+        var ts = getThemeStyles(tmpl.theme);
+        var accent = ts.accent || "#666";
+        var heading = ts.heading || "#333";
+        var h2bg = ts.h2Bg || "transparent";
+        var previewHtml =
+            '<div class="tmpl-card-preview"' +
+            ' style="background:#fff">' +
+            '<div class="tmpl-card-preview-bar"' +
+            ' style="background:' + accent + '"></div>' +
+            '<div class="tmpl-card-preview-h2bar"' +
+            ' style="background:' + accent +
+            ';left:8px"></div>' +
+            '<div class="tmpl-card-preview-title"' +
+            ' style="background:' + heading +
+            ';margin-left:18px"></div>' +
+            '<div class="tmpl-card-preview-line"' +
+            ' style="background:' + ts.color +
+            '"></div>' +
+            '<div class="tmpl-card-preview-line"' +
+            ' style="background:' + ts.color +
+            '"></div>' +
+            '<div class="tmpl-card-preview-line short"' +
+            ' style="background:' + ts.color +
+            '"></div>' +
+            '</div>';
         card.innerHTML =
-            deleteBtn +
-            '<div class="tmpl-card-icon">' +
-            tmpl.icon + '</div>' +
+            deleteBtn + previewHtml +
             '<div class="tmpl-card-title">' +
             tmpl.name + '</div>' +
             '<div class="tmpl-card-desc">' +
@@ -7787,6 +7848,27 @@ function init() {
             showToast(syncScrollEnabled ?
                 tr("t_sync_on") : tr("t_sync_off"),
                 "success");
+        });
+
+    /* Device preview toggle */
+    var btnPhone = document.getElementById(
+        "btnDevicePhone");
+    var btnDesktop = document.getElementById(
+        "btnDeviceDesktop");
+    var previewScroll = document.querySelector(
+        ".preview-scroll");
+    if (btnPhone) btnPhone.addEventListener("click",
+        function() {
+            btnPhone.classList.add("active");
+            btnDesktop.classList.remove("active");
+            previewScroll.classList.add("phone-mode");
+        });
+    if (btnDesktop) btnDesktop.addEventListener(
+        "click", function() {
+            btnDesktop.classList.add("active");
+            btnPhone.classList.remove("active");
+            previewScroll.classList.remove(
+                "phone-mode");
         });
 
     /* Editor scroll: sync line gutter + preview */

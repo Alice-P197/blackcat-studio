@@ -1738,7 +1738,13 @@ var THEMES = [
     {id:"tech",name:"技术蓝"},
     {id:"forest",name:"森野绿"},
     {id:"ink",name:"水墨黑"},
-    {id:"rose",name:"玫瑰红"}
+    {id:"rose",name:"玫瑰红"},
+    {id:"moyu",name:"摸鱼绿"},
+    {id:"redwhite",name:"红白色系"},
+    {id:"graphite",name:"石墨极简"},
+    {id:"zen",name:"留白禅意"},
+    {id:"ticket",name:"摸鱼票据"},
+    {id:"olive",name:"橄榄手记"}
 ];
 
 function getThemeStyles(themeId) {
@@ -1856,6 +1862,119 @@ function getThemeStyles(themeId) {
             h2Extra:"padding:8px 12px;padding-left:14px;" +
                 "padding-bottom:8px",
             blockquoteBorder:"#e94b85"
+        },
+        moyu:{
+            font:'"Noto Sans SC","PingFang SC",' +
+                'sans-serif',
+            color:"#1a2e1a",heading:"#059669",accent:"#059669",
+            border:"#d4f0d4",codeBg:"#eef8ee",
+            codeBlockBg:"#eef8ee",codeBlockBorder:"#a4d4a4",
+            quoteBg:"#e8f8e8",tocBg:"#eef8ee",
+            tocBorder:"#a4d4a4",
+            h1Bg:"linear-gradient(to right," +
+                "rgba(5,150,105,0.08),transparent)",
+            h2Bg:"rgba(5,150,105,0.05)",
+            h1Border:"border-bottom:3px solid #059669",
+            h2Border:"border-left:4px solid #059669",
+            h1Extra:"padding:10px 14px;" +
+                "padding-bottom:8px",
+            h2Extra:"padding:8px 12px;padding-left:14px;" +
+                "padding-bottom:8px",
+            blockquoteBorder:"#059669"
+        },
+        redwhite:{
+            font:'"Noto Serif SC","Songti SC",' +
+                '"SimSun",serif',
+            color:"#1a1a1a",heading:"#DC2626",accent:"#DC2626",
+            border:"#f0d0d0",codeBg:"#fff5f5",
+            codeBlockBg:"#fff5f5",codeBlockBorder:"#e8c8c8",
+            quoteBg:"#fef5f5",tocBg:"#fef8f8",
+            tocBorder:"#e8c8c8",
+            h1Bg:"linear-gradient(to right," +
+                "rgba(220,38,38,0.08),transparent)",
+            h2Bg:"rgba(220,38,38,0.05)",
+            h1Border:"border-bottom:3px solid #DC2626",
+            h2Border:"border-left:4px solid #DC2626",
+            h1Extra:"text-align:center;padding:12px 14px;" +
+                "padding-bottom:10px;letter-spacing:2px",
+            h2Extra:"padding:8px 12px;padding-left:14px;" +
+                "padding-bottom:8px",
+            blockquoteBorder:"#DC2626"
+        },
+        graphite:{
+            font:'"Noto Sans SC","PingFang SC",' +
+                'sans-serif',
+            color:"#2d2d2d",heading:"#52525B",accent:"#52525B",
+            border:"#e0e0e0",codeBg:"#f5f5f5",
+            codeBlockBg:"#f5f5f5",codeBlockBorder:"#d0d0d0",
+            quoteBg:"#f0f0f0",tocBg:"#f5f5f5",
+            tocBorder:"#d0d0d0",
+            h1Bg:"transparent",
+            h2Bg:"transparent",
+            h1Border:"border-bottom:2px solid #52525B",
+            h2Border:"border-left:3px solid #52525B",
+            h1Extra:"font-weight:800;letter-spacing:1px;" +
+                "padding:10px 14px;padding-bottom:8px",
+            h2Extra:"font-weight:600;padding:8px 12px;" +
+                "padding-left:14px;padding-bottom:8px",
+            blockquoteBorder:"#52525B"
+        },
+        zen:{
+            font:'"Noto Serif SC","Songti SC",' +
+                '"SimSun",serif',
+            color:"#3d3d3d",heading:"#4A5D52",accent:"#4A5D52",
+            border:"#e0e6e0",codeBg:"#f5f7f5",
+            codeBlockBg:"#f5f7f5",codeBlockBorder:"#c4d4c4",
+            quoteBg:"#eef3ef",tocBg:"#f5f7f5",
+            tocBorder:"#c4d4c4",
+            h1Bg:"transparent",
+            h2Bg:"transparent",
+            h1Border:"border-bottom:1px solid #4A5D52",
+            h2Border:"border-left:2px solid #4A5D52",
+            h1Extra:"text-align:center;padding:16px 14px;" +
+                "padding-bottom:12px;letter-spacing:3px",
+            h2Extra:"padding:10px 12px;padding-left:14px;" +
+                "padding-bottom:8px",
+            blockquoteBorder:"#4A5D52"
+        },
+        ticket:{
+            font:'"JetBrains Mono","Noto Sans SC",' +
+                '"PingFang SC",sans-serif',
+            color:"#1a1a1a",heading:"#059669",accent:"#059669",
+            border:"#d4e8d4",codeBg:"#eef8ee",
+            codeBlockBg:"#eef8ee",codeBlockBorder:"#a4d4a4",
+            quoteBg:"#e8f8e8",tocBg:"#eef8ee",
+            tocBorder:"#a4d4a4",
+            h1Bg:"linear-gradient(to right," +
+                "rgba(5,150,105,0.06),rgba(5,150,105,0.02))",
+            h2Bg:"rgba(5,150,105,0.04)",
+            h1Border:"border-bottom:2px dashed #059669",
+            h2Border:"border-left:4px solid #059669;" +
+                "border-left-style:dashed",
+            h1Extra:"padding:10px 14px;padding-bottom:8px;" +
+                "letter-spacing:1px",
+            h2Extra:"padding:8px 12px;padding-left:14px;" +
+                "padding-bottom:8px",
+            blockquoteBorder:"#059669"
+        },
+        olive:{
+            font:'"Noto Serif SC","Songti SC",' +
+                '"SimSun",serif',
+            color:"#2d2d2d",heading:"#1e1f23",accent:"#5a6b4a",
+            border:"#d4d0c4",codeBg:"#f5f3ee",
+            codeBlockBg:"#f5f3ee",codeBlockBorder:"#c4c0b4",
+            quoteBg:"#eef0ea",tocBg:"#f5f3ee",
+            tocBorder:"#c4c0b4",
+            h1Bg:"linear-gradient(to right," +
+                "rgba(90,107,74,0.08),transparent)",
+            h2Bg:"rgba(90,107,74,0.05)",
+            h1Border:"border-bottom:3px solid #1e1f23",
+            h2Border:"border-left:4px solid #5a6b4a",
+            h1Extra:"font-weight:800;padding:10px 14px;" +
+                "padding-bottom:8px",
+            h2Extra:"padding:8px 12px;padding-left:14px;" +
+                "padding-bottom:8px",
+            blockquoteBorder:"#5a6b4a"
         }
     };
     return t[themeId] || t.default;
@@ -5129,6 +5248,225 @@ var TEMPLATES = [
 '去腥效果更好。\n:::end\n\n' +
 ':::link[更多美食探店](https://example.com/food) ' +
 '每周更新城中美味地图。\n'
+    },
+    {
+        id:"moyu-green-tmpl",
+        name:"摸鱼绿",
+        icon:"",
+        desc:"清新绿色调，卡片丰富，适合教程、测评、工具盘点",
+        tag:"绿色+教程",
+        theme:"moyu",
+        content:
+'# 五款好用的 AI 工具盘点\n\n' +
+'本期盘点的工具均经过至少两周深度使用，' +
+'从实际场景出发给出真实评价。\n\n' +
+'## 工具一览\n\n' +
+'| 工具 | 定位 | 适用场景 |\n' +
+'|------|------|----------|\n' +
+'| Cursor | AI 编辑器 | 全栈开发 |\n' +
+'| Claude | AI 助手 | 写作分析 |\n' +
+'| Figma | 设计协作 | UI 设计 |\n' +
+'| Notion | 知识管理 | 团队协作 |\n' +
+'| Vercel | 部署平台 | 前端部署 |\n\n' +
+'## Cursor：写代码的效率革命\n\n' +
+'### 核心能力\n\n' +
+'- **智能补全**：基于项目上下文，' +
+'补全准确率远超传统 IDE\n' +
+'- **对话式重构**：选中代码直接对话修改\n' +
+'- **多文件编辑**：一次修改跨越多个文件\n\n' +
+'### 使用体验\n\n' +
+':::tip Cursor 的 Cmd+K ' +
+'是日常使用频率最高的快捷键，' +
+'选中代码后直接用自然语言描述需求即可。\n:::end\n\n' +
+'## Claude：最强写作助手\n\n' +
+'> Claude 在中文写作上的表现，' +
+'目前没有对手能与之匹敌。\n\n' +
+'### 典型用法\n\n' +
+'1. 给出主题和结构，让 Claude 起草初稿\n' +
+'2. 逐段要求改写，去除 AI 味\n' +
+'3. 人工润色，加入个人风格\n\n' +
+'## 选择建议\n\n' +
+':::warning 工具只是手段，不是目的。' +
+'先想清楚你要解决什么问题，' +
+'再选合适的工具。\n:::end\n'
+    },
+    {
+        id:"red-white-tmpl",
+        name:"红白色系",
+        icon:"",
+        desc:"经典编辑风格，力量感强，适合深度分析、观点文章",
+        tag:"红白+分析",
+        theme:"redwhite",
+        content:
+'# 为什么大模型仍然无法取代程序员\n\n' +
+'AI 编程工具火了两年，' +
+'但软件工程的核心从未改变。\n\n' +
+'## 问题的本质\n\n' +
+'编程的难点从来不在于写代码。' +
+'代码只是解决方案的最终产物，' +
+'真正的挑战在于：**理解问题、设计方案、权衡取舍**。\n\n' +
+'> 代码是写给人看的，' +
+'只是恰好机器也能执行。\n\n' +
+'## AI 擅长什么\n\n' +
+'- 生成样板代码\n' +
+'- 补全已有模式\n' +
+'- 解释复杂逻辑\n' +
+'- 翻译语言之间转换\n\n' +
+'## AI 不擅长什么\n\n' +
+'### 理解业务上下文\n\n' +
+'AI 不知道你的用户是谁，' +
+'不知道你的业务约束是什么，' +
+'不知道哪些技术债可以接受。\n\n' +
+'### 系统级设计\n\n' +
+':::warning AI 能写好一个函数，' +
+'但设计不出一个可持续演进的系统架构。\n:::end\n\n' +
+'## 结论\n\n' +
+'AI 不会取代程序员，' +
+'但会用 AI 的程序员会取代不会用的。\n' +
+'未来的竞争力在于**判断力和系统思维**，' +
+'而非编码速度。\n'
+    },
+    {
+        id:"graphite-minimal-tmpl",
+        name:"石墨极简",
+        icon:"",
+        desc:"灰阶克制极简风，高端质感，适合科技评论、专业观点",
+        tag:"极简+专业",
+        theme:"graphite",
+        content:
+'# 极简主义设计的十个原则\n\n' +
+'少即是多，但少不等于简单。\n\n' +
+'## 去除多余\n\n' +
+'每一个元素的存在都应该有理由。' +
+'如果不确定是否需要，大概不需要。\n\n' +
+'## 留白即设计\n\n' +
+'空白不是空，是呼吸。' +
+'好的排版懂得什么时候停下来。\n\n' +
+'> 内容决定了需要多少留白，' +
+'而不是留白去迁就内容。\n\n' +
+'## 字体克制\n\n' +
+'一个页面最多两种字体。' +
+'字重的对比比字体种类的丰富更重要。\n\n' +
+'## 色彩纪律\n\n' +
+':::note 主色用于锚点，' +
+'不超过 5 处。' +
+'其余 90% 是灰阶。\n:::end\n\n' +
+'## 层次清晰\n\n' +
+'| 层级 | 字号 | 字重 |\n' +
+'|------|------|------|\n' +
+'| 标题 | 24px | 800 |\n' +
+'| 小标题 | 18px | 600 |\n' +
+'| 正文 | 16px | 400 |\n' +
+'| 辅助 | 12px | 400 |\n\n' +
+'## 一致性\n\n' +
+'间距、圆角、边框，' +
+'全套设计系统的数值应该是固定的几个档位。\n'
+    },
+    {
+        id:"zen-whitespace-tmpl",
+        name:"留白禅意",
+        icon:"",
+        desc:"大留白衬线风，呼吸感最强，适合随笔、生活感悟",
+        tag:"禅意+随笔",
+        theme:"zen",
+        content:
+'# 停下来\n\n' +
+'你已经多久没有什么都不做了？\n\n' +
+'## 无所事事\n\n' +
+'不是冥想，不是放空，' +
+'就是字面意义上的什么都不做。' +
+'不看手机，不听音乐，不思考明天。\n\n' +
+'> 味道是在沉默中品出来的。\n\n' +
+'## 慢的价值\n\n' +
+'快是一种能力，慢是一种选择。\n' +
+'很多人忘了，' +
+'慢也可以是一种能力。\n\n' +
+'## 少即是丰富\n\n' +
+':::note 拥有的越少，' +
+'看得越清楚。\n:::end\n\n' +
+'## 留白\n\n' +
+'这篇文章故意很短。' +
+'因为有些道理，' +
+'说多了反而失去力量。\n\n' +
+'你读完了，' +
+'现在放下手机，' +
+'去窗边站一会儿吧。\n'
+    },
+    {
+        id:"moyu-ticket-tmpl",
+        name:"摸鱼票据",
+        icon:"",
+        desc:"票据视觉风，适合工具对比、创意评测",
+        tag:"票据+对比",
+        theme:"ticket",
+        content:
+'# AI 编辑器横评：Cursor vs Windsurf vs Trae\n\n' +
+'三款 AI 编辑器深度对比，' +
+'用真实项目跑了两周。\n\n' +
+'## 评测概要\n\n' +
+'| 维度 | Cursor | Windsurf | Trae |\n' +
+'|------|--------|----------|------|\n' +
+'| 补全 | 95分 | 88分 | 92分 |\n' +
+'| 对话 | 90分 | 85分 | 88分 |\n' +
+'| 速度 | 85分 | 92分 | 90分 |\n' +
+'| 价格 | $20/月 | $15/月 | 免费 |\n\n' +
+'## Cursor 体验\n\n' +
+'### 优势\n\n' +
+'- 补全质量最高，上下文理解强\n' +
+'- 多文件编辑能力领先\n' +
+'- 生态成熟，插件丰富\n\n' +
+'### 不足\n\n' +
+'- 价格偏高\n' +
+'- 大项目时索引较慢\n\n' +
+'## Windsurf 体验\n\n' +
+':::tip Windsurf 的 Cascade 模式' +
+'适合快速原型开发，' +
+'一句话生成完整功能模块。\n:::end\n\n' +
+'## Trae 体验\n\n' +
+':::note Trae 的最大优势是免费，' +
+'且中文场景支持好，' +
+'适合个人开发者起步使用。\n:::end\n\n' +
+'## 总结\n\n' +
+'> 预算充足选 Cursor，' +
+'追求速度选 Windsurf，' +
+'免费起步选 Trae。\n'
+    },
+    {
+        id:"olive-journal-tmpl",
+        name:"橄榄手记",
+        icon:"",
+        desc:"深色衬线风，编辑手记感，适合深度评测、案例复盘",
+        tag:"手记+复盘",
+        theme:"olive",
+        content:
+'# 编辑手记 · 九月复盘\n\n' +
+'本月内容产量下降，但质量提升明显。\n\n' +
+'## 数据回顾\n\n' +
+'| 指标 | 上月 | 本月 | 变化 |\n' +
+'|------|------|------|------|\n' +
+'| 发布 | 12篇 | 8篇 | -33% |\n' +
+'| 阅读 | 4.2万 | 5.1万 | +21% |\n' +
+'| 在看 | 380 | 520 | +37% |\n' +
+'| 新增 | 320 | 480 | +50% |\n\n' +
+'## 做对了什么\n\n' +
+'### 减少产量，提升深度\n\n' +
+'把每篇文章的平均字数从 1500 ' +
+'提升到了 3000，' +
+'读者反馈明显更好。\n\n' +
+'### 固定专栏节奏\n\n' +
+'每周一深度分析，每周三工具推荐，' +
+'每周五编辑手记。' +
+'读者开始形成阅读预期。\n\n' +
+'## 做错了什么\n\n' +
+':::warning 标题党了一次，' +
+'阅读量涨了但掉粉 30 人。' +
+'教训：标题可以吸引人，' +
+'但不能欺骗人。\n:::end\n\n' +
+'## 下月计划\n\n' +
+'1. 保持 8 篇/月的节奏\n' +
+'2. 新增「读者问答」专栏\n' +
+'3. 尝试音频内容，每月 2 期\n\n' +
+'> 少即是多，慢即是快。\n'
     }
 ];
 

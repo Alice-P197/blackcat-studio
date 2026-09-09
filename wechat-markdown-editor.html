@@ -733,6 +733,11 @@ padding:0;background:none" data-i18n-title="text_color" title="Text Color">
 <button class="side-btn" id="btnCover" title="文章头图">头图</button>
 <button class="side-btn" id="btnSection" title="章节标题">章节</button>
 <button class="side-btn" id="btnHighlights" title="看点卡片">看点</button>
+<button class="side-btn" id="btnQuote" title="金句卡片">金句</button>
+<button class="side-btn" id="btnDivider" title="分隔线">分隔</button>
+<button class="side-btn" id="btnFollow" title="引导关注">关注</button>
+<button class="side-btn" id="btnSignature" title="作者签名">签名</button>
+<button class="side-btn" id="btnSubtitle" title="副标题">副题</button>
 <div id="sideCustomStyleBtns"></div>
 </div>
 <button class="side-toggle" id="btnToggleBlock" data-section="sideBlockCol">▲ 样式</button>
@@ -854,6 +859,21 @@ padding:0;background:none" data-i18n-title="text_color" title="Text Color">
 </div></div>
 <div class="help-row"><span>看点卡片</span>
 <div class="help-keys"><span class="kbd">:::highlights :::end</span>
+</div></div>
+<div class="help-row"><span>金句卡片</span>
+<div class="help-keys"><span class="kbd">:::quote 金句文字</span>
+</div></div>
+<div class="help-row"><span>分隔线</span>
+<div class="help-keys"><span class="kbd">:::divider 文字</span>
+</div></div>
+<div class="help-row"><span>引导关注</span>
+<div class="help-keys"><span class="kbd">:::follow 公众号名称</span>
+</div></div>
+<div class="help-row"><span>作者签名</span>
+<div class="help-keys"><span class="kbd">:::signature 作者名</span>
+</div></div>
+<div class="help-row"><span>副标题</span>
+<div class="help-keys"><span class="kbd">:::subtitle 副标题文字</span>
 </div></div>
 </div>
 <div class="help-sec"><h4 data-i18n="contact">Contact</h4>
@@ -2200,7 +2220,44 @@ var H1_DECOR_STYLES = [
       "50px;text-align:center;background:linear-gradient("+
       "to right,"+hexToRgba(t.accent,0.08)+","+
       hexToRgba(t.accent,0.18)+","+hexToRgba(t.accent,0.08)+
-      ")"}}
+      ")"}},
+    {id:"gradientbox",name:"Grad Box",
+     style:function(t){return"font-size:24px;font-"+
+      "weight:700;color:#fff;margin:32px 0 20px;"+
+      "line-height:1.35;padding:14px 20px;border-radius:"+
+      "12px;background:linear-gradient(135deg,"+t.accent+
+      ","+hexToRgba(t.accent,0.7)+");text-align:center"}},
+    {id:"cornerframe",name:"Corner Frame",
+     style:function(t){return"font-size:24px;font-"+
+      "weight:700;color:"+t.heading+";margin:32px 0 20px;"+
+      "line-height:1.35;padding:14px 20px;border:2px solid "+
+      t.accent+";outline:1px solid "+hexToRgba(t.accent,0.3)+
+      ";outline-offset:4px;text-align:center"}},
+    {id:"colorblock",name:"Color Block",
+     style:function(t){return"font-size:24px;font-"+
+      "weight:700;color:"+t.heading+";margin:32px 0 20px;"+
+      "line-height:1.35;padding:10px 16px;border-left:8px "+
+      "solid "+t.accent+";background:"+hexToRgba(t.accent,
+      0.06)+";border-radius:0 8px 8px 0"}},
+    {id:"striped",name:"Striped",
+     style:function(t){return"font-size:24px;font-"+
+      "weight:700;color:"+t.heading+";margin:32px 0 20px;"+
+      "line-height:1.35;padding:14px 18px;border-radius:8px;"+
+      "background:repeating-linear-gradient(45deg,"+
+      hexToRgba(t.accent,0.06)+" 0 10px,"+
+      hexToRgba(t.accent,0.02)+" 10px 20px)"}},
+    {id:"outlinepill",name:"Outline Pill",
+     style:function(t){return"font-size:24px;font-"+
+      "weight:700;color:"+t.accent+";margin:32px 0 20px;"+
+      "line-height:1.35;display:inline-block;padding:10px "+
+      "26px;border-radius:30px;border:2px solid "+
+      t.accent+";background:#fff"}},
+    {id:"barcenter",name:"Center Bars",
+     style:function(t){return"font-size:24px;font-"+
+      "weight:700;color:"+t.heading+";margin:32px 0 20px;"+
+      "line-height:1.35;padding:14px 0;text-align:center;"+
+      "border-top:4px solid "+t.accent+";border-bottom:1px "+
+      "solid "+hexToRgba(t.accent,0.3)}}
 ];
 
 /* Decorative H2 Styles */
@@ -2254,7 +2311,39 @@ var H2_DECOR_STYLES = [
       "line-height:1.35;padding:6px 14px;border-radius:0 8px "+
       "8px 0;background:linear-gradient(to right,"+
       hexToRgba(t.accent,0.12)+",transparent);border-left:"+
-      "4px solid "+t.accent}}
+      "4px solid "+t.accent}},
+    {id:"gradienttext",name:"Grad Text",
+     style:function(t){return"font-size:20px;font-"+
+      "weight:700;margin:28px 0 14px;line-height:1.35;"+
+      "padding:4px 0;background:linear-gradient(to right,"+
+      t.accent+","+hexToRgba(t.accent,0.4)+");"+
+      "-webkit-background-clip:text;background-clip:text;"+
+      "-webkit-text-fill-color:transparent;color:transparent"}},
+    {id:"numbertag",name:"Number Tag",
+     style:function(t){return"font-size:20px;font-"+
+      "weight:700;color:"+t.accent+";margin:28px 0 14px;"+
+      "line-height:1.35;display:inline-block;padding:4px "+
+      "14px 4px 18px;border:1px solid "+t.accent+
+      ";border-radius:4px;background:#fff"}},
+    {id:"underline3d",name:"3D Underline",
+     style:function(t){return"font-size:20px;font-"+
+      "weight:700;color:"+t.heading+";margin:28px 0 14px;"+
+      "line-height:1.35;padding:4px 0 8px;border-bottom:5px "+
+      "solid "+t.accent+";border-bottom-style:double;"+
+      "border-bottom-width:4px"}},
+    {id:"softcard",name:"Soft Card",
+     style:function(t){return"font-size:20px;font-"+
+      "weight:700;color:"+t.heading+";margin:28px 0 14px;"+
+      "line-height:1.35;padding:8px 16px;border-radius:10px;"+
+      "background:"+hexToRgba(t.accent,0.07)+";box-shadow:"+
+      "0 3px 10px "+hexToRgba(t.accent,0.12)}},
+    {id:"cornerbar",name:"Corner Bar",
+     style:function(t){return"font-size:20px;font-"+
+      "weight:700;color:"+t.heading+";margin:28px 0 14px;"+
+      "line-height:1.35;padding:8px 14px;border-left:5px "+
+      "solid "+t.accent+";border-radius:0 6px 6px 0;"+
+      "background:linear-gradient(to right,"+
+      hexToRgba(t.accent,0.1)+",transparent)"}}
 ];
 
 /* Cat-themed H1 Styles */
@@ -6581,6 +6670,56 @@ function processSpecialBlocks(text) {
             continue;
         }
 
+        /* Quote card: :::quote 金句文字 */
+        var quoteMatch = line.match(/^:::quote\s*(.*)$/);
+        if (quoteMatch) {
+            result.push("ZZQUOTESTART" +
+                encodeURIComponent(quoteMatch[1] || "") +
+                "ZZQUOTEEND");
+            i++;
+            continue;
+        }
+
+        /* Divider: :::divider [文字] */
+        var divMatch = line.match(/^:::divider\s*(.*)$/);
+        if (divMatch) {
+            result.push("ZZDIVIDERSTART" +
+                encodeURIComponent(divMatch[1] || "") +
+                "ZZDIVIDEREND");
+            i++;
+            continue;
+        }
+
+        /* Follow guide: :::follow 公众号名称 */
+        var followMatch = line.match(/^:::follow\s*(.*)$/);
+        if (followMatch) {
+            result.push("ZZFOLLOWSTART" +
+                encodeURIComponent(followMatch[1] || "") +
+                "ZZFOLLOWEND");
+            i++;
+            continue;
+        }
+
+        /* Author signature: :::signature 作者名 */
+        var signMatch = line.match(/^:::signature\s*(.*)$/);
+        if (signMatch) {
+            result.push("ZZSIGNSTART" +
+                encodeURIComponent(signMatch[1] || "") +
+                "ZZSIGNEND");
+            i++;
+            continue;
+        }
+
+        /* Subtitle: :::subtitle 副标题文字 */
+        var subMatch = line.match(/^:::subtitle\s*(.*)$/);
+        if (subMatch) {
+            result.push("ZZSUBSTART" +
+                encodeURIComponent(subMatch[1] || "") +
+                "ZZSUBEND");
+            i++;
+            continue;
+        }
+
         /* Info boxes with optional [label] and style params:
            :::tip or :::tip[Custom Label]
            :::tip bg=#fff border=#000 [Label]
@@ -6892,6 +7031,95 @@ function renderLinkCards(container, ts) {
                 cards + '</section></section>';
         });
 
+    /* Quote card: ZZQUOTESTART金句文字ZZQUOTEEND */
+    html = html.replace(
+        /ZZQUOTESTART([\s\S]*?)ZZQUOTEEND/g,
+        function(m, text) {
+            text = decodeURIComponent(text).trim();
+            return '<section style="margin:20px 0 24px;' +
+                'padding:20px 18px;background:' + ts.quoteBg +
+                ';border-left:4px solid ' + ts.accent +
+                ';border-radius:0 8px 8px 0;position:relative">' +
+                '<span style="position:absolute;top:-14px;left:12px;' +
+                'font-size:64px;line-height:1;color:' + ts.accent +
+                ';opacity:0.25;font-family:Georgia,serif">&ldquo;</span>' +
+                '<section style="font-size:15px;line-height:1.9;' +
+                'color:' + ts.heading + ';font-style:italic;' +
+                'margin-top:10px">' + text + '</section></section>';
+        });
+
+    /* Divider: ZZDIVIDERSTART[文字]ZZDIVIDEREND */
+    html = html.replace(
+        /ZZDIVIDERSTART([\s\S]*?)ZZDIVIDEREND/g,
+        function(m, text) {
+            text = decodeURIComponent(text).trim();
+            var label = text ? (
+                '<span style="display:inline-block;padding:0 14px;' +
+                'font-size:12px;color:' + ts.color +
+                ';background:#fff;position:relative;z-index:1">' +
+                text + '</span>') : '';
+            return '<section style="display:flex;' +
+                'align-items:center;justify-content:center;' +
+                'margin:26px 0;position:relative">' +
+                '<span style="flex:1;height:1px;background:' +
+                ts.border + '"></span>' + label +
+                '<span style="flex:1;height:1px;background:' +
+                ts.border + '"></span></section>';
+        });
+
+    /* Follow guide: ZZFOLLOWSTART公众号名称ZZFOLLOWEND */
+    html = html.replace(
+        /ZZFOLLOWSTART([\s\S]*?)ZZFOLLOWEND/g,
+        function(m, name) {
+            name = decodeURIComponent(name).trim();
+            var nameHtml = name ? (
+                '<span style="font-weight:800;color:' + ts.accent +
+                '">&nbsp;' + name + '&nbsp;</span>') : '';
+            return '<section style="margin:28px 0;padding:18px 16px;' +
+                'text-align:center;border:1px dashed ' + ts.accent +
+                ';border-radius:12px;background:' + ts.tocBg + '">' +
+                '<span style="display:block;font-size:14px;' +
+                'font-weight:700;color:' + ts.heading +
+                ';letter-spacing:1px;margin-bottom:8px">' +
+                '关注公众号' + nameHtml + '</span>' +
+                '<span style="display:block;font-size:12px;color:' +
+                ts.color + ';line-height:1.7">点击上方蓝字关注' +
+                '，第一时间获取最新内容</span>' +
+                '<span style="display:inline-block;margin-top:10px;' +
+                'padding:5px 18px;font-size:12px;color:#fff;' +
+                'background:' + ts.accent +
+                ';border-radius:20px">立即关注</span></section>';
+        });
+
+    /* Author signature: ZZSIGNSTART作者名ZZSIGNEND */
+    html = html.replace(
+        /ZZSIGNSTART([\s\S]*?)ZZSIGNEND/g,
+        function(m, name) {
+            name = decodeURIComponent(name).trim();
+            return '<section style="text-align:right;' +
+                'margin:24px 0 8px;padding-right:4px">' +
+                '<span style="display:inline-block;font-size:13px;' +
+                'color:' + ts.color + ';letter-spacing:1px">' +
+                '—— ' + name + '</span>' +
+                '<span style="display:inline-block;width:24px;' +
+                'height:2px;background:' + ts.accent +
+                ';margin-left:10px;vertical-align:middle"></span>' +
+                '</section>';
+        });
+
+    /* Subtitle: ZZSUBSTART副标题文字ZZSUBEND */
+    html = html.replace(
+        /ZZSUBSTART([\s\S]*?)ZZSUBEND/g,
+        function(m, text) {
+            text = decodeURIComponent(text).trim();
+            return '<section style="text-align:center;' +
+                'margin:12px 0 22px">' +
+                '<span style="display:inline-block;font-size:14px;' +
+                'color:' + ts.accent + ';letter-spacing:3px;' +
+                'font-weight:600;padding:0 4px">' + text +
+                '</span></section>';
+        });
+
     /* Info boxes - placeholder format:
        ZZBOXSTARTtype|label|styleParams|contentZZBOXEND
        - label: optional custom label (URL-encoded)
@@ -7144,6 +7372,37 @@ function insertHighlights() {
         '看点二\n' +
         '看点三\n' +
         ':::end\n\n';
+    insertAtCursor(snippet);
+}
+
+/* Insert quote card snippet */
+function insertQuote() {
+    var snippet = '\n:::quote 真正的优秀，是敢于\n' +
+        '与众不同。\n\n';
+    insertAtCursor(snippet);
+}
+
+/* Insert divider snippet */
+function insertDivider() {
+    var snippet = '\n:::divider 分隔线文字\n\n';
+    insertAtCursor(snippet);
+}
+
+/* Insert follow guide snippet */
+function insertFollow() {
+    var snippet = '\n:::follow 公众号名称\n\n';
+    insertAtCursor(snippet);
+}
+
+/* Insert author signature snippet */
+function insertSignature() {
+    var snippet = '\n:::signature 作者名\n\n';
+    insertAtCursor(snippet);
+}
+
+/* Insert subtitle snippet */
+function insertSubtitle() {
+    var snippet = '\n:::subtitle 副标题文字\n\n';
     insertAtCursor(snippet);
 }
 
@@ -8015,6 +8274,11 @@ function init() {
         ["btnCover", "click", insertCover],
         ["btnSection", "click", insertSectionHeader],
         ["btnHighlights", "click", insertHighlights],
+        ["btnQuote", "click", insertQuote],
+        ["btnDivider", "click", insertDivider],
+        ["btnFollow", "click", insertFollow],
+        ["btnSignature", "click", insertSignature],
+        ["btnSubtitle", "click", insertSubtitle],
         ["btnUndo", "click", undo],
         ["btnRedo", "click", redo]
     ];

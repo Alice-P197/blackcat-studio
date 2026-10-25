@@ -1,0 +1,48 @@
+appId: com.alicep197.blackcatstudio
+productName: 小黑喵创作台
+copyright: Copyright © 2026 Alice-P197
+
+directories:
+  output: dist
+  buildResources: build
+
+# 只打进运行需要的东西；vendor 是本地化的前端依赖，必须包含，否则启动要等 CDN
+files:
+  - main.js
+  - preload.js
+  - lib/**/*
+  - renderer/**/*
+  - vendor/**/*
+  - package.json
+
+asar: true
+compression: maximum
+
+win:
+  icon: build/icon.png
+  # ⚠️ 必须关掉：app-builder 的 rcedit 即使在 Windows 上也会去下载 winCodeSign
+  # （内含 macOS 的 libcrypto.dylib/libssl.dylib 符号链接），本机非管理员 + 未开开发者模式，
+  # 7za 建符号链接失败 → 解压报 "Cannot create symbolic link" → 打包整体退出 1。
+  # 改为 false 后打包完全不调用 rcedit/签名；产物图标由打包后用 rcedit 手动补（见 apply-icon.ps1）。
+  signAndEditExecutable: false
+  target:
+    - target: portable
+      arch: [x64]
+    - target: nsis
+      arch: [x64]
+
+# 便携版：双击即用，不安装
+portable:
+  artifactName: 小黑喵创作台V3-便携版.exe
+  requestExecutionLevel: user
+
+# 安装包：创建桌面/开始菜单快捷方式，可卸载
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: 小黑喵创作台
+  artifactName: 小黑喵创作台V3-安装包.exe
+  deleteAppDataOnUninstall: false

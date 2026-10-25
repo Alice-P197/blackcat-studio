@@ -1,0 +1,16 @@
+{
+  "name": "blackcat-studio",
+  "version": "3.0.0",
+  "description": "小黑喵创作台 V3 · 桌面版 —— Notion ↔ 创作台 ↔ 微信公众号 一体化排版工作台",
+  "main": "main.js",
+  "author": "Alice-P197",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win portable nsis --x64"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  }
+}

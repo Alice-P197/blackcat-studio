@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小黑喵创作台 V3 · 使用说明</title>
+<style>
+  :root{--bg:#1a1b26;--fg:#c4cdda;--dim:#8b93a7;--accent:#7aa2f7;--card:#22243a;--line:#31344e;--gold:#e6c07b;--green:#9ece6a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+       font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+       line-height:1.8;padding:40px 16px 60px}
+  .wrap{max-width:760px;margin:0 auto}
+  h1{font-size:26px;margin:0 0 4px}
+  .sub{color:var(--dim);margin:0 0 30px;font-size:14px}
+  h2{font-size:18px;color:var(--accent);margin:38px 0 12px;border-bottom:1px solid var(--line);padding-bottom:8px}
+  h3{font-size:15px;color:var(--gold);margin:24px 0 8px}
+  p,li{font-size:14px}
+  a{color:var(--accent)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:14px 0}
+  .step{display:flex;gap:14px;margin:12px 0}
+  .step .n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#16161e;
+           font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px;margin-top:3px}
+  .step .b b{color:var(--gold)}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:13.5px}
+  th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+  th{background:var(--card);color:var(--gold);font-weight:600}
+  code{background:#16161e;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-size:12.5px;color:var(--green)}
+  kbd{background:#2f334d;border:1px solid #454b6b;border-bottom-width:2px;border-radius:4px;padding:0 6px;font-size:12.5px;font-family:inherit}
+  .tip{border-left:3px solid var(--green);background:rgba(158,206,106,.08);border-radius:0 8px 8px 0;padding:10px 16px;margin:12px 0;font-size:13.5px}
+  .warn{border-left:3px solid #e0af68;background:rgba(224,175,104,.08);border-radius:0 8px 8px 0;padding:10px 16px;margin:12px 0;font-size:13.5px}
+  details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 16px;margin:10px 0}
+  summary{cursor:pointer;font-size:14px;font-weight:600;color:var(--fg)}
+  details p,details li{color:var(--fg)}
+  .foot{margin-top:40px;color:var(--dim);font-size:12px;border-top:1px solid var(--line);padding-top:16px}
+  .foot a{color:var(--accent)}
+  .back{display:inline-block;margin-bottom:20px;color:var(--dim);font-size:13px;text-decoration:none}
+  .back:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← 返回主页</a>
+  <h1>🐾 小黑喵创作台 V3 · 使用说明</h1>
+  <p class="sub">Notion 笔记 → 微信公众号，一条龙排版发布。无需安装，浏览器打开即用。</p>
+
+  <h2>V3 是什么</h2>
+  <p>V3 在 V2.7 全部排版能力之上，新增了 <b style="color:var(--gold)">Notion 模块</b>：</p>
+  <ul>
+    <li>直接搜索并导入你的 <b>Notion 笔记</b>，公式、表格、高亮、折叠块自动转换成公众号兼容格式</li>
+    <li>Notion 里的图片<b>自动下载并内嵌</b>，粘贴进微信编辑器不会丢图</li>
+    <li>发布文章后可以<b>一键回写</b>：把「已发布」记录自动追加到对应的 Notion 笔记末尾</li>
+  </ul>
+  <p>原来的 V2.7 仍然可用（主页第二个入口），V3 是独立文件，互不影响。</p>
+
+  <h2>快速上手（6 步）</h2>
+  <div class="step"><div class="n">1</div><div class="b">打开 <a href="blackcat-v3.html">网页版 V3</a>（需要联网）</div></div>
+  <div class="step"><div class="n">2</div><div class="b">点击工具栏的 <b>Notion</b> 按钮，打开 Notion 面板</div></div>
+  <div class="step"><div class="n">3</div><div class="b"><b>第一次用先配 Token</b>（见下一节），粘进面板点「保存」——只需配置一次</div></div>
+  <div class="step"><div class="n">4</div><div class="b">搜索 → 点一篇笔记 → <b>「导入到编辑器」</b>，等图片下载完成（面板会显示进度）</div></div>
+  <div class="step"><div class="n">5</div><div class="b">在创作台里调整排版：主题、字体、公式框、标题样式……（V2 原有能力都在）</div></div>
+  <div class="step"><div class="n">6</div><div class="b">按 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> 一键复制 → 粘贴到微信公众号编辑器，检查后发表</div></div>
+
+  <h2>如何获取 Notion Token</h2>
+  <div class="card">
+    <ol style="margin:0;padding-left:20px">
+      <li>打开 <a href="https://www.notion.so/developers/tokens" target="_blank" rel="noopener">notion.so/developers/tokens</a>（需登录 Notion）</li>
+      <li>点 <b>「New integration」</b>（新建集成），名字随意（如 blackcat）</li>
+      <li>能力（Capabilities）勾选 <b>Notion API</b> 即可；有效期建议选 <b>7 天</b> 短期令牌</li>
+      <li>创建后复制生成的 Token（以 <code>ntn_</code> 开头），粘进创作台 Notion 面板，点「保存」</li>
+      <li><b>重要</b>：到 Notion 里打开你想导入的页面，右上角 <b>「···」→ Connections → 连接你刚建的集成</b>，否则搜索不到这篇笔记</li>
+    </ol>
+  </div>
+  <div class="tip">✅ Token 只保存在你<b>自己浏览器</b>的本地存储里，不上传任何服务器。建议设短期有效期，用完随时在 Notion 后台吊销。</div>
+
+  <h2>导入时自动转换了什么</h2>
+  <table>
+    <tr><th>Notion 里的内容</th><th>导入后</th></tr>
+    <tr><td>正文文字、标题、列表</td><td>直接对应转换</td></tr>
+    <tr><td>行内公式 <code>$…$</code> / 区块公式 <code>$$…$$</code></td><td>渲染成 SVG 公式（微信公众号兼容）</td></tr>
+    <tr><td>Callout 提示块</td><td>转换为提示 / 备注 / 警告样式框</td></tr>
+    <tr><td>表格、折叠块、文字高亮</td><td>转换为公众号支持的对应样式</td></tr>
+    <tr><td>图片</td><td><b>自动下载 → 内嵌</b>，粘贴进微信不丢图</td></tr>
+    <tr><td>页面提及、转义符号</td><td>自动清理</td></tr>
+  </table>
+
+  <h3>关于图片下载</h3>
+  <p>Notion 的图片服务器响应较慢，V3 采用 6 路并行下载加速，并显示实时进度（如「下载图片 3/12，约还需 8s」）。同一篇笔记重复导入不会重新下载。</p>
+  <div class="warn">⚠️ 图片下载偶尔会因网络失败——失败时状态栏会有提示，预览能看到但复制到微信会丢图，<b>重新导入一次</b>即可。</div>
+
+  <h2>两种发布方式，怎么选</h2>
+  <table>
+    <tr><th></th><th>方式一：一键复制（推荐）</th><th>方式二：推送草稿箱（桌面版）</th></tr>
+    <tr><td>操作</td><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> 复制 → 粘到微信编辑器</td><td>桌面版里点「推送到草稿箱」，草稿自动出现在公众号后台</td></tr>
+    <tr><td>图片</td><td>内嵌数据，直接粘贴可用</td><td>自动上传微信图床后替换</td></tr>
+    <tr><td>篇幅限制</td><td>无</td><td>正文需小于 2 万字符 / 1M</td></tr>
+    <tr><td>适合</td><td><b>所有文章</b>，尤其公式多的长文</td><td>常规篇幅文章，省去手动粘贴</td></tr>
+  </table>
+  <div class="tip">💡 微信「一键发表」接口从 2025 年 7 月起已对个人订阅号关闭，所以「推进草稿箱 / 粘贴」之后仍需你在公众号后台手动点发表——这是微信平台的限制，不是软件问题。</div>
+
+  <h2>常见问题</h2>
+  <details>
+    <summary>搜索不到我的笔记？</summary>
+    <p>① 检查是否已在 Notion 里把该页面「连接」了你的集成（见获取 Token 第 5 步）；② 刚新建/改名的页面，搜索索引有十几秒延迟，稍等再搜。</p>
+  </details>
+  <details>
+    <summary>提示 Token 无效或突然不能用？</summary>
+    <p>Token 有有效期，过期后到 <a href="https://www.notion.so/developers/tokens" target="_blank" rel="noopener">Notion 开发者后台</a>重新生成一个，粘进面板点「保存」覆盖即可。</p>
+  </details>
+  <details>
+    <summary>粘贴到微信后公式 / 样式不对？</summary>
+    <p>确认是按 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> 复制（普通 Ctrl+C 复制的是 markdown 源码）。公式以 SVG 内嵌，粘贴后微信编辑器里直接可见。</p>
+  </details>
+  <details>
+    <summary>页面打开很慢或按钮没反应？</summary>
+    <p>V3 依赖公共 CDN（公式 / 高亮库），个别网络环境首次加载可能需要几秒。如果长时间空白，刷新一次或换个网络再试。</p>
+  </details>
+  <details>
+    <summary>想要密钥加密存储、无跨域限制、手机上排版？</summary>
+    <p>用 <a href="https://github.com/Alice-P197/blackcat-studio/releases/latest">桌面版 V3（Windows）</a>：Notion Token / 公众号密钥经系统级加密保存，内置局域网服务——手机连同一 Wi-Fi 打开 <code>http://电脑IP:8899</code> 即可在手机上导入与排版。</p>
+  </details>
+
+  <div class="foot">
+    🐾 小黑喵创作台 · 开源地址 <a href="https://github.com/Alice-P197/blackcat-studio">github.com/Alice-P197/blackcat-studio</a>
+    · <a href="blackcat-v3.html">直接开始使用 V3</a>
+  </div>
+</div>
+</body>
+</html>

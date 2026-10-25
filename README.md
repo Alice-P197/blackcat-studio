@@ -4,9 +4,10 @@
 
 **👉 在线使用：<https://alice-p197.github.io/blackcat-studio/>**
 
-- 版本：2.6.0（2026 年 9 月 9 日）
-- 运行方式：直接用浏览器打开 [`wechat-markdown-editor.html`](./wechat-markdown-editor.html)，或访问上方 GitHub Pages 地址
-- 详细使用指南见仓库内的《[小黑喵创作台-操作手册.docx](./小黑喵创作台-操作手册.docx)》
+- 版本：3.0.0（2026 年 10 月 25 日）
+- 网页版：V3.0 [`blackcat-v3.html`](./blackcat-v3.html)（推荐，含 Notion 模块）｜ V2.7 [`wechat-markdown-editor.html`](./wechat-markdown-editor.html)
+- 桌面版（Windows）：便携版 / 安装包见 [Releases](https://github.com/Alice-P197/blackcat-studio/releases/latest)，Electron 源码在 [`desktop/`](./desktop/) 目录
+- 详细使用指南见仓库内的《[小黑喵创作台-操作手册.docx](./小黑喵创作台-操作手册.docx)》；V3 工作流见 [README-V3.md](./README-V3.md)
 - 更新日志：[CHANGELOG.md](./CHANGELOG.md)
 
 ---

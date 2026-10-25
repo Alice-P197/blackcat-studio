@@ -4,15 +4,65 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>小黑喵创作台 · Black Cat Studio</title>
-<meta http-equiv="refresh" content="0;url=wechat-markdown-editor.html">
-<script>location.replace("wechat-markdown-editor.html");</script>
 <style>
-  body{display:flex;align-items:center;justify-content:center;height:100vh;margin:0;
-       background:#1a1b26;color:#c4cdda;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
-  a{color:#7aa2f7}
+  :root{--bg:#1a1b26;--fg:#c4cdda;--dim:#8b93a7;--accent:#7aa2f7;--card:#22243a;--line:#31344e}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;background:var(--bg);color:var(--fg);
+       font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+       display:flex;align-items:center;justify-content:center;padding:40px 16px}
+  .wrap{max-width:720px;width:100%}
+  h1{font-size:28px;margin:0 0 4px}
+  h1 .paw{margin-right:8px}
+  .sub{color:var(--dim);margin:0 0 28px;font-size:14px}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:30px}
+  @media(max-width:560px){.cards{grid-template-columns:1fr}}
+  a.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;
+         padding:18px 20px;text-decoration:none;color:var(--fg);transition:border-color .15s}
+  a.card:hover{border-color:var(--accent)}
+  a.card .t{font-size:16px;font-weight:600;display:block;margin-bottom:6px}
+  a.card .t em{font-style:normal;color:var(--accent);font-size:12px;margin-left:8px;vertical-align:2px}
+  a.card .d{color:var(--dim);font-size:13px;line-height:1.6}
+  h2{font-size:16px;color:var(--accent);margin:0 0 12px}
+  ul{margin:0;padding-left:20px;font-size:14px;line-height:2}
+  ul b{color:#e6c07b}
+  .foot{margin-top:28px;color:var(--dim);font-size:12px}
+  .foot a{color:var(--accent)}
 </style>
 </head>
 <body>
-<p>正在进入小黑喵创作台…如未自动跳转，请 <a href="wechat-markdown-editor.html">点击这里</a>。</p>
+<div class="wrap">
+  <h1><span class="paw">🐾</span>小黑喵创作台</h1>
+  <p class="sub">微信公众号 Markdown 排版编辑器 —— 实时预览 / 多主题 / LaTeX 公式 / 代码高亮 / 一键复制到微信</p>
+
+  <div class="cards">
+    <a class="card" href="blackcat-v3.html">
+      <span class="t">网页版 V3.0<em>推荐</em></span>
+      <span class="d">V2 全部能力 + Notion 模块：导入笔记、公式/图片自动转换、发布记录回写 Notion</span>
+    </a>
+    <a class="card" href="wechat-markdown-editor.html">
+      <span class="t">网页版 V2.7</span>
+      <span class="d">经典单文件版：纯排版工作台，轻量、稳定</span>
+    </a>
+    <a class="card" href="https://github.com/Alice-P197/blackcat-studio/releases/latest">
+      <span class="t">桌面版 V3.0（Windows）<em>新</em></span>
+      <span class="d">Electron 桌面应用：密钥本地加密、无跨域限制、内置局域网服务（手机同 Wi-Fi 访问排版）</span>
+    </a>
+    <a class="card" href="guide-v3.html">
+      <span class="t">V3 使用说明</span>
+      <span class="d">Notion 导入 → 排版 → 发布完整图文教程、Token 配置与常见问题</span>
+    </a>
+  </div>
+
+  <h2>✨ v3.0 更新内容</h2>
+  <ul>
+    <li><b>Notion 模块</b>：搜索 / 导入 Notion 笔记，行内公式、callout、表格、图片自动转换（图片转 base64，微信可用）；发布后可一键回写 Notion 沉淀发布记录</li>
+    <li><b>桌面版（Electron）</b>：主进程代理全部 API 调用——无 CORS 限制，Notion Token / 公众号 AppSecret 经 Windows DPAPI 加密存储，网页侧拿不到原文</li>
+    <li><b>一键推送公众号草稿箱</b>：图片自动传微信图床、封面传永久素材、正文自动体检（2 万字符 / 1M 限制），长文走 <b>Ctrl+Shift+C</b> 一键复制</li>
+    <li><b>局域网服务</b>：桌面版一键开启后，手机连同一 Wi-Fi 打开 <code>http://电脑IP:8899</code> 即可在手机上导入与排版（浏览器模式降级为只读导入）</li>
+    <li><b>文稿库</b>：多篇文稿管理，自动保存到本机，关掉应用不丢</li>
+  </ul>
+
+  <p class="foot">开源：<a href="https://github.com/Alice-P197/blackcat-studio">github.com/Alice-P197/blackcat-studio</a> · 桌面版源码见仓库 <code>desktop/</code> 目录</p>
+</div>
 </body>
 </html>

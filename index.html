@@ -5,35 +5,126 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>小黑喵创作台 · Black Cat Studio</title>
 <style>
-  :root{--bg:#1a1b26;--fg:#c4cdda;--dim:#8b93a7;--accent:#7aa2f7;--card:#22243a;--line:#31344e}
+  :root{
+    --bg:#0f1017;--fg:#c4cdda;--dim:#8b93a7;--accent:#7aa2f7;--accent2:#bb9af7;
+    --card:rgba(34,36,58,.62);--line:rgba(122,162,247,.18);--gold:#e0af68;--green:#9ece6a;
+  }
   *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
   body{margin:0;min-height:100vh;background:var(--bg);color:var(--fg);
        font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
-       display:flex;align-items:center;justify-content:center;padding:40px 16px}
-  .wrap{max-width:720px;width:100%}
-  h1{font-size:28px;margin:0 0 4px}
-  h1 .paw{margin-right:8px}
-  .sub{color:var(--dim);margin:0 0 28px;font-size:14px}
-  .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:30px}
-  @media(max-width:560px){.cards{grid-template-columns:1fr}}
-  a.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;
-         padding:18px 20px;text-decoration:none;color:var(--fg);transition:border-color .15s}
-  a.card:hover{border-color:var(--accent)}
-  a.card .t{font-size:16px;font-weight:600;display:block;margin-bottom:6px}
-  a.card .t em{font-style:normal;color:var(--accent);font-size:12px;margin-left:8px;vertical-align:2px}
-  a.card .d{color:var(--dim);font-size:13px;line-height:1.6}
-  h2{font-size:16px;color:var(--accent);margin:0 0 12px}
-  ul{margin:0;padding-left:20px;font-size:14px;line-height:2}
-  ul b{color:#e6c07b}
-  .foot{margin-top:28px;color:var(--dim);font-size:12px}
-  .foot a{color:var(--accent)}
+       overflow-x:hidden}
+  /* ---- 背景氛围 ---- */
+  .glow{position:fixed;border-radius:50%;filter:blur(110px);opacity:.32;pointer-events:none;z-index:0;
+        animation:drift 18s ease-in-out infinite alternate}
+  .g1{width:520px;height:520px;background:#3d59a1;top:-160px;left:-120px}
+  .g2{width:460px;height:460px;background:#7d4ca3;bottom:-140px;right:-120px;animation-delay:-6s}
+  .g3{width:340px;height:340px;background:#1f6feb;top:40%;right:22%;opacity:.16;animation-delay:-11s}
+  @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(50px,36px) scale(1.12)}}
+  .paw{position:fixed;font-size:22px;opacity:.07;z-index:0;pointer-events:none;
+       animation:pawfall linear infinite}
+  @keyframes pawfall{from{transform:translateY(-8vh) rotate(-14deg)}to{transform:translateY(108vh) rotate(12deg)}}
+  .wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:56px 20px 70px}
+  /* ---- Hero ---- */
+  .hero{text-align:center;margin-bottom:44px;animation:rise .8s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  h1{font-size:44px;margin:0 0 10px;letter-spacing:1px;
+     background:linear-gradient(92deg,#7aa2f7 0%,#bb9af7 45%,#e0af68 100%);
+     background-size:200% auto;-webkit-background-clip:text;background-clip:text;
+     -webkit-text-fill-color:transparent;animation:shine 6s linear infinite}
+  @keyframes shine{to{background-position:200% center}}
+  .sub{color:var(--dim);margin:0 auto 8px;font-size:15px;max-width:640px}
+  .badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+  .badge{font-size:12px;color:var(--fg);background:var(--card);border:1px solid var(--line);
+         border-radius:999px;padding:5px 14px;backdrop-filter:blur(6px)}
+  .badge b{color:var(--green)}
+  /* ---- 章节标题 ---- */
+  h2{font-size:19px;color:var(--accent);margin:46px 0 16px;display:flex;align-items:center;gap:10px}
+  h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+  /* ---- 下载区 ---- */
+  .dl{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:640px){.dl{grid-template-columns:1fr}}
+  a.dl-card{position:relative;display:block;text-decoration:none;color:var(--fg);
+            background:linear-gradient(145deg,rgba(122,162,247,.13),rgba(187,154,247,.09));
+            border:1px solid var(--line);border-radius:16px;padding:22px 22px 18px;overflow:hidden;
+            transition:transform .18s,border-color .18s,box-shadow .18s;animation:rise .8s ease both}
+  a.dl-card:nth-child(2){animation-delay:.1s}
+  a.dl-card::before{content:"";position:absolute;inset:-1px;border-radius:16px;padding:1px;
+            background:linear-gradient(120deg,rgba(122,162,247,.55),transparent 40%,transparent 60%,rgba(187,154,247,.55));
+            -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+            -webkit-mask-composite:xor;mask-composite:exclude;opacity:.5;transition:opacity .18s}
+  a.dl-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px -12px rgba(122,162,247,.35)}
+  a.dl-card:hover::before{opacity:1}
+  .dl-icon{font-size:30px}
+  .dl-card .t{font-size:17px;font-weight:700;margin:8px 0 2px}
+  .dl-card .t em{font-style:normal;font-size:11px;color:#16161e;background:var(--accent);
+                 border-radius:6px;padding:2px 8px;margin-left:8px;vertical-align:2px;font-weight:700}
+  .dl-card .d{color:var(--dim);font-size:13px;line-height:1.7;margin:0 0 14px}
+  .dl-btn{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:#16161e;
+          background:linear-gradient(92deg,var(--accent),var(--accent2));
+          border-radius:10px;padding:9px 18px;box-shadow:0 4px 16px -4px rgba(122,162,247,.5)}
+  .dl-card .meta{display:block;margin-top:10px;color:var(--dim);font-size:11.5px}
+  .alt-link{grid-column:1/-1;text-align:center;color:var(--dim);font-size:12.5px;margin-top:2px}
+  .alt-link a{color:var(--accent);text-decoration:none}
+  .alt-link a:hover{text-decoration:underline}
+  /* ---- 功能卡片 ---- */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:640px){.cards{grid-template-columns:1fr}}
+  a.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;
+         padding:18px 20px;text-decoration:none;color:var(--fg);backdrop-filter:blur(8px);
+         transition:border-color .15s,transform .15s}
+  a.card:hover{border-color:var(--accent);transform:translateY(-3px)}
+  a.card .t{font-size:15.5px;font-weight:600;display:block;margin-bottom:6px}
+  a.card .t em{font-style:normal;color:#16161e;background:var(--gold);font-size:11px;
+               border-radius:6px;padding:2px 7px;margin-left:8px;vertical-align:2px;font-weight:700}
+  a.card .d{color:var(--dim);font-size:13px;line-height:1.65}
+  /* ---- 更新内容 ---- */
+  .changelog{background:var(--card);border:1px solid var(--line);border-radius:16px;
+             padding:20px 26px;backdrop-filter:blur(8px)}
+  .changelog ul{margin:0;padding-left:20px;font-size:14px;line-height:2}
+  .changelog b{color:var(--gold)}
+  .changelog code{background:#16161e;border:1px solid var(--line);border-radius:4px;
+                  padding:1px 6px;font-size:12.5px;color:var(--green)}
+  .foot{margin-top:44px;text-align:center;color:var(--dim);font-size:12.5px}
+  .foot a{color:var(--accent);text-decoration:none}
+  .foot a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1><span class="paw">🐾</span>小黑喵创作台</h1>
-  <p class="sub">微信公众号 Markdown 排版编辑器 —— 实时预览 / 多主题 / LaTeX 公式 / 代码高亮 / 一键复制到微信</p>
+<div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
 
+<div class="wrap">
+  <div class="hero">
+    <h1>🐾 小黑喵创作台</h1>
+    <p class="sub">微信公众号 Markdown 排版编辑器 —— 实时预览 / 多主题 / LaTeX 公式 / 代码高亮 / Notion 一键导入 / 一键复制到微信</p>
+    <div class="badges">
+      <span class="badge">当前版本 <b>v3.0.0</b></span>
+      <span class="badge">网页版 · 免安装</span>
+      <span class="badge">桌面版 · Windows</span>
+      <span class="badge">开源</span>
+    </div>
+  </div>
+
+  <h2>⬇️ 下载桌面版</h2>
+  <div class="dl">
+    <a class="dl-card" href="https://github.com/Alice-P197/blackcat-studio/releases/latest/download/BlackCatStudio-V3-portable.exe">
+      <span class="dl-icon">🎒</span>
+      <span class="t">便携版<em>免安装</em></span>
+      <p class="d">单文件，双击即用。不写注册表，适合 U 盘携带与快速试用。</p>
+      <span class="dl-btn">⬇ 立即下载</span>
+      <span class="meta">Windows x64 · 约 72 MB · BlackCatStudio-V3-portable.exe</span>
+    </a>
+    <a class="dl-card" href="https://github.com/Alice-P197/blackcat-studio/releases/latest/download/BlackCatStudio-V3-setup.exe">
+      <span class="dl-icon">📦</span>
+      <span class="t">安装包<em>推荐</em></span>
+      <p class="d">NSIS 安装向导：可选安装目录、创建快捷方式、支持完整卸载。</p>
+      <span class="dl-btn">⬇ 立即下载</span>
+      <span class="meta">Windows x64 · 约 79 MB · BlackCatStudio-V3-setup.exe</span>
+    </a>
+    <div class="alt-link">不想装任何东西？<a href="blackcat-v3.html">直接在浏览器里打开网页版 V3 →</a></div>
+  </div>
+
+  <h2>🚀 在线使用</h2>
   <div class="cards">
     <a class="card" href="blackcat-v3.html">
       <span class="t">网页版 V3.0<em>推荐</em></span>
@@ -43,26 +134,42 @@
       <span class="t">网页版 V2.7</span>
       <span class="d">经典单文件版：纯排版工作台，轻量、稳定</span>
     </a>
-    <a class="card" href="https://github.com/Alice-P197/blackcat-studio/releases/latest">
-      <span class="t">桌面版 V3.0（Windows）<em>新</em></span>
-      <span class="d">Electron 桌面应用：密钥本地加密、无跨域限制、内置局域网服务（手机同 Wi-Fi 访问排版）</span>
-    </a>
     <a class="card" href="guide-v3.html">
       <span class="t">V3 使用说明</span>
       <span class="d">Notion 导入 → 排版 → 发布完整图文教程、Token 配置与常见问题</span>
     </a>
+    <a class="card" href="https://github.com/Alice-P197/blackcat-studio/releases/latest">
+      <span class="t">全部历史版本</span>
+      <span class="d">在 GitHub Releases 查看各版本发布说明与全部安装文件</span>
+    </a>
   </div>
 
   <h2>✨ v3.0 更新内容</h2>
-  <ul>
-    <li><b>Notion 模块</b>：搜索 / 导入 Notion 笔记，行内公式、callout、表格、图片自动转换（图片转 base64，微信可用）；发布后可一键回写 Notion 沉淀发布记录</li>
-    <li><b>桌面版（Electron）</b>：主进程代理全部 API 调用——无 CORS 限制，Notion Token / 公众号 AppSecret 经 Windows DPAPI 加密存储，网页侧拿不到原文</li>
-    <li><b>一键推送公众号草稿箱</b>：图片自动传微信图床、封面传永久素材、正文自动体检（2 万字符 / 1M 限制），长文走 <b>Ctrl+Shift+C</b> 一键复制</li>
-    <li><b>局域网服务</b>：桌面版一键开启后，手机连同一 Wi-Fi 打开 <code>http://电脑IP:8899</code> 即可在手机上导入与排版（浏览器模式降级为只读导入）</li>
-    <li><b>文稿库</b>：多篇文稿管理，自动保存到本机，关掉应用不丢</li>
-  </ul>
+  <div class="changelog">
+    <ul>
+      <li><b>Notion 模块</b>：搜索 / 导入 Notion 笔记，行内公式、callout、表格、图片自动转换（图片转 base64，微信可用）；发布后可一键回写 Notion 沉淀发布记录</li>
+      <li><b>桌面版（Electron）</b>：主进程代理全部 API 调用——无 CORS 限制，Notion Token / 公众号 AppSecret 经 Windows DPAPI 加密存储，网页侧拿不到原文</li>
+      <li><b>一键推送公众号草稿箱</b>：图片自动传微信图床、封面传永久素材、正文自动体检（2 万字符 / 1M 限制），长文走 <b>Ctrl+Shift+C</b> 一键复制</li>
+      <li><b>局域网服务</b>：桌面版一键开启后，手机连同一 Wi-Fi 打开 <code>http://电脑IP:8899</code> 即可在手机上导入与排版（浏览器模式降级为只读导入）</li>
+      <li><b>文稿库</b>：多篇文稿管理，自动保存到本机，关掉应用不丢</li>
+    </ul>
+  </div>
 
-  <p class="foot">开源：<a href="https://github.com/Alice-P197/blackcat-studio">github.com/Alice-P197/blackcat-studio</a> · 桌面版源码见仓库 <code>desktop/</code> 目录</p>
+  <p class="foot">🐾 开源：<a href="https://github.com/Alice-P197/blackcat-studio">github.com/Alice-P197/blackcat-studio</a> · 桌面版源码见仓库 <code style="background:#16161e;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-size:11.5px;color:var(--green)">desktop/</code> 目录</p>
 </div>
+<script>
+  // 飘落的猫爪印
+  (function(){
+    for(var i=0;i<9;i++){
+      var p=document.createElement("span");
+      p.className="paw";p.textContent="🐾";
+      p.style.left=(4+Math.random()*92)+"vw";
+      p.style.animationDuration=(14+Math.random()*14)+"s";
+      p.style.animationDelay=(-Math.random()*20)+"s";
+      p.style.fontSize=(14+Math.random()*16)+"px";
+      document.body.appendChild(p);
+    }
+  })();
+</script>
 </body>
 </html>

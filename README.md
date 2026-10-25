@@ -7,7 +7,7 @@
 - 版本：3.0.0（2026 年 10 月 25 日）
 - 网页版：V3.0 [`blackcat-v3.html`](./blackcat-v3.html)（推荐，含 Notion 模块）｜ V2.7 [`wechat-markdown-editor.html`](./wechat-markdown-editor.html)
 - 桌面版（Windows）：便携版 / 安装包见 [Releases](https://github.com/Alice-P197/blackcat-studio/releases/latest)，Electron 源码在 [`desktop/`](./desktop/) 目录
-- 详细使用指南见仓库内的《[小黑喵创作台-操作手册.docx](./小黑喵创作台-操作手册.docx)》；V3 工作流见 [README-V3.md](./README-V3.md)
+- 在线图文教程：[V3 使用说明](https://alice-p197.github.io/blackcat-studio/guide-v3.html)（源文件 [`guide-v3.html`](./guide-v3.html)）；完整操作手册见《[小黑喵创作台-操作手册.docx](./小黑喵创作台-操作手册.docx)》
 - 更新日志：[CHANGELOG.md](./CHANGELOG.md)
 
 ---
@@ -27,7 +27,65 @@
 | **模板系统** | 内置 8 套文章模板，还可保存自定义模板 |
 | **HTML 直渲模式** | 支持直接写 HTML + 内联 CSS，可嵌 ECharts 图表（复制到微信时自动转内联样式 / 图表转图片） |
 
-## 🖥️ 界面布局
+## 🐾 Notion 模块（V3 新增）
+
+V3 在 V2.7 全部能力之上追加了自包含的 Notion 模块（V2 原文件未改动，V3 是独立文件）：
+
+- **搜索 / 导入 Notion 笔记**，公式、表格、高亮、折叠块自动转换
+- **Notion 图片自动下载并内嵌**（6 路并行 + 会话内缓存，面板实时显示进度），粘贴进微信编辑器不丢图
+- **发布后一键回写**：点「标记为已发布并回写」，发布记录自动追加到对应 Notion 笔记末尾
+
+### 快速上手
+
+1. 打开 [`blackcat-v3.html`](https://alice-p197.github.io/blackcat-studio/blackcat-v3.html)（需联网）
+2. 工具栏点 **Notion** 按钮
+3. 第一次用：到 <https://www.notion.so/developers/tokens> 建一个集成令牌（能力勾 **Notion API**，建议 7 天有效期），粘进面板点「保存」；并到要导入的 Notion 页面「···」→ Connections 里连接该集成
+4. 搜索 → 点一篇笔记 → 「导入到编辑器」
+5. 在创作台里调排版（主题 / 字体 / 公式框等，都是 V2 原有能力）
+6. **Ctrl+Shift+C** 一键复制 → 粘到微信公众号编辑器
+7. 回 Notion 面板点「标记为已发布并回写」，发布记录自动沉淀到笔记
+
+### 导入时自动转换
+
+| Notion 里 | 创作台里 |
+| --- | --- |
+| 正文文字、标题、列表 | 直接对应转换 |
+| 行内公式 `$…$` / 区块公式 `$$…$$` | MathJax 输出 SVG（微信要求） |
+| Callout 提示块 | `:::tip` / `:::note` / `:::warning` / `:::success` |
+| 表格 / 折叠块 / 文字高亮 | markdown 表格 / `:::note` 容器 / `<font color>` |
+| 图片（Notion S3） | 下载 → base64 内嵌 → 正文写【图片N】占位符 |
+| 页面提及、转义符号 | 自动清理 |
+
+> 微信正文不能引用外部图片，所以导入时就把图抓下来转成 base64 内嵌——这就是粘贴进微信不丢图的原因。同一篇笔记重复导入不会重新下载图片。
+
+### 两种发布方式
+
+| | 一键复制（Ctrl+Shift+C） | 推送到草稿箱（桌面版） |
+| --- | --- | --- |
+| 操作 | 复制后粘进微信编辑器 | 草稿自动出现在公众号后台 |
+| 图片 | base64 内嵌，直接可用 | 自动上传微信图床后替换 |
+| 篇幅 | 无限制 | 正文 < 2 万字符、< 1M |
+| 适合 | **所有文章**，尤其公式多的长文 | 常规篇幅文章 |
+
+> 微信「一键发表」接口自 2025 年 7 月起对个人订阅号关闭，且草稿正文图片必须来自微信图床——所以「自动推进草稿箱 + 手动点发表」已是个人号的上限，这是微信平台的限制。另外：本机若走 VPN / 代理，出口 IP 变化后调微信接口会报 `40164`，需去公众号后台重新加 IP 白名单。
+
+### 已知边界
+
+- 刚在 Notion 新建 / 改名的页面，搜索索引有十几秒延迟
+- 图片下载失败会保留原 URL 并在状态栏提示，重新导入即可
+- Token 只存在浏览器本地（localStorage），不上传任何服务器；建议用短期令牌，用完随时吊销
+- V3 需要联网打开（CDN 依赖与 V2 相同）
+
+## 🖥️ 桌面版（Windows）
+
+Electron 桌面应用，[便携版 / 安装包下载](https://github.com/Alice-P197/blackcat-studio/releases/latest)，源码见 [`desktop/`](./desktop/) 目录：
+
+- 主进程代理全部 Notion / 微信 API：无跨域限制，Token / AppSecret 经 Windows DPAPI 加密存储
+- 一键推送公众号草稿箱：图片自动传微信图床、封面传永久素材、正文限制预检
+- 多文稿库管理，自动保存到本机
+- **局域网服务**：一键开启后，手机连同一 Wi-Fi 打开 `http://电脑IP:8899` 即可在手机上导入与排版
+
+## 🖼️ 界面布局
 
 - **顶部工具栏**：渲染（Ctrl+S）、深色/浅色切换（Ctrl+D）、帮助（Ctrl+/）、模板（TEMP）、MD/HTML 模式切换、中英文切换、导入、导出、复制到微信（Ctrl+Shift+C）
 - **格式栏（第二行）**：主题选择、标题样式（Title）、颜色工坊（Color）、中文字体 / 英文字体 / 字号、文字对齐（L/C/R/J）、文字颜色、同步滚动（Sync）
@@ -89,9 +147,13 @@
 
 | 文件 | 说明 |
 | --- | --- |
-| `wechat-markdown-editor.html` | 创作台主程序，单文件网页应用 |
+| `blackcat-v3.html` | **V3 主程序**（单文件网页应用，含 Notion 模块） |
+| `wechat-markdown-editor.html` | V2.7 主程序（经典单文件版，无 Notion 模块） |
+| `index.html` | 项目主页 / 导航页 |
+| `guide-v3.html` | V3 在线图文使用说明 |
 | `小黑喵创作台-操作手册.docx` | 完整操作手册（功能详解与使用指南） |
-| `index.html` | 入口跳转页，自动重定向到主程序 |
+| `CHANGELOG.md` | 更新日志 |
+| `desktop/` | 桌面版（Electron）完整源码与打包说明 |
 
 ## 🔗 技术依赖
 

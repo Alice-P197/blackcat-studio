@@ -8,7 +8,7 @@
 - 搜索 / 导入 Notion 笔记：行内与区块公式还原（MathJax 输出 SVG，微信要求）、callout/表格/折叠块/高亮自动转换
 - Notion 图片自动下载转 base64（6 路并行 + 会话内缓存），可直接粘贴进微信编辑器
 - 「标记为已发布并回写」：发布记录自动追加到对应 Notion 笔记末尾
-- 详见 `README-V3.md`
+- 详见在线图文教程 `guide-v3.html`（仓库根目录）
 
 ### 新增：桌面版（Electron，`desktop/` 目录）
 
